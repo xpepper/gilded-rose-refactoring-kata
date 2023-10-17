@@ -8,55 +8,59 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].getName().equals("Aged Brie")
-                    && !items[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].getQuality() > 0) {
-                    if (!items[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].setQuality(items[i].getQuality() - 1);
-                    }
+      for (Item item : items)
+          extracted(item);
+    }
+
+    private static void extracted(Item item) {
+        String name = item.getName();
+        if (!name.equals("Aged Brie")
+            && !name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+          if (item.getQuality() > 0) {
+            if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+              item.setQuality(item.getQuality() - 1);
+            }
+          }
+        } else {
+          if (item.getQuality() < 50) {
+            item.setQuality(item.getQuality() + 1);
+
+            if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+              if (item.getSellIn() < 11) {
+                if (item.getQuality() < 50) {
+                  item.setQuality(item.getQuality() + 1);
                 }
+              }
+
+              if (item.getSellIn() < 6) {
+                if (item.getQuality() < 50) {
+                  item.setQuality(item.getQuality() + 1);
+                }
+              }
+            }
+          }
+        }
+
+        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+          item.setSellIn(item.getSellIn() - 1);
+        }
+
+        if (item.getSellIn() < 0) {
+          if (!name.equals("Aged Brie")) {
+            if (!name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+              if (item.getQuality() > 0) {
+                if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+                  item.setQuality(item.getQuality() - 1);
+                }
+              }
             } else {
-                if (items[i].getQuality() < 50) {
-                    items[i].setQuality(items[i].getQuality() + 1);
-
-                    if (items[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].getSellIn() < 11) {
-                            if (items[i].getQuality() < 50) {
-                                items[i].setQuality(items[i].getQuality() + 1);
-                            }
-                        }
-
-                        if (items[i].getSellIn() < 6) {
-                            if (items[i].getQuality() < 50) {
-                                items[i].setQuality(items[i].getQuality() + 1);
-                            }
-                        }
-                    }
-                }
+              item.setQuality(item.getQuality() - item.getQuality());
             }
-
-            if (!items[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].setSellIn(items[i].getSellIn() - 1);
+          } else {
+            if (item.getQuality() < 50) {
+              item.setQuality(item.getQuality() + 1);
             }
-
-            if (items[i].getSellIn() < 0) {
-                if (!items[i].getName().equals("Aged Brie")) {
-                    if (!items[i].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].getQuality() > 0) {
-                            if (!items[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].setQuality(items[i].getQuality() - 1);
-                            }
-                        }
-                    } else {
-                        items[i].setQuality(items[i].getQuality() - items[i].getQuality());
-                    }
-                } else {
-                    if (items[i].getQuality() < 50) {
-                        items[i].setQuality(items[i].getQuality() + 1);
-                    }
-                }
-            }
+          }
         }
     }
 }
