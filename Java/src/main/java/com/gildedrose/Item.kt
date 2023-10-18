@@ -2,10 +2,9 @@ package com.gildedrose
 
 class Item(
     val name: String,
-    var sellIn: Int = 0,
-    var quality: Int = 0
+    var sellIn: Int,
+    var quality: Int
 ) {
-
     override fun toString() = "${this.name}, ${this.sellIn}, ${this.quality}"
 }
 
