@@ -16,7 +16,7 @@ public class TexttestFixture {
 
         Item[] items = new Item[]{
             new BaseItem("+5 Dexterity Vest", 10, 20), //
-            new BaseItem("Aged Brie", 2, 0), //
+            new Brie("Aged Brie", 2, 0), //
             new BaseItem("Elixir of the Mongoose", 5, 7), //
             new BaseItem("Sulfuras, Hand of Ragnaros", 0, 80), //
             new BaseItem("Sulfuras, Hand of Ragnaros", -1, 80),

@@ -8,12 +8,36 @@ open class Item(
     override fun toString() = "${this.name}, ${this.sellIn}, ${this.quality}"
 }
 
-class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
+open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
     fun update() {
         val name = name
-        if (name != "Aged Brie"
-            && name != "Backstage passes to a TAFKAL80ETC concert"
-        ) {
+        update1(name)
+
+        if (name != "Sulfuras, Hand of Ragnaros") {
+            sellIn = sellIn - 1
+        }
+
+        if (sellIn < 0) {
+            if (name != "Aged Brie") {
+                if (name != "Backstage passes to a TAFKAL80ETC concert") {
+                    if (quality > 0) {
+                        if (name != "Sulfuras, Hand of Ragnaros") {
+                            quality = quality - 1
+                        }
+                    }
+                } else {
+                    quality = quality - quality
+                }
+            } else {
+                if (quality < 50) {
+                    quality = quality + 1
+                }
+            }
+        }
+    }
+
+    open fun update1(name: String) {
+        if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert") {
             if (quality > 0) {
                 if (name != "Sulfuras, Hand of Ragnaros") {
                     quality = quality - 1
@@ -38,27 +62,13 @@ class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, qua
                 }
             }
         }
+    }
+}
 
-        if (name != "Sulfuras, Hand of Ragnaros") {
-            sellIn = sellIn - 1
-        }
-
-        if (sellIn < 0) {
-            if (name != "Aged Brie") {
-                if (name != "Backstage passes to a TAFKAL80ETC concert") {
-                    if (quality > 0) {
-                        if (name != "Sulfuras, Hand of Ragnaros") {
-                            quality = quality - 1
-                        }
-                    }
-                } else {
-                    quality = quality - quality
-                }
-            } else {
-                if (quality < 50) {
-                    quality = quality + 1
-                }
-            }
+class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
+    override fun update1(name: String) {
+        if (quality < 50) {
+            quality = quality + 1
         }
     }
 }
