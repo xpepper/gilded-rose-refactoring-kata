@@ -72,3 +72,7 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
         }
     }
 }
+
+class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
+    override fun update1(name: String) {}
+}
