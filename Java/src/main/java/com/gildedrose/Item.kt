@@ -10,8 +10,8 @@ open class Item(
 
 open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
     fun update() {
-        update1()
         age()
+        update1()
         update3()
     }
 
@@ -55,13 +55,13 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
         if (quality < 50) {
             quality = quality + 1
 
-            if (sellIn < 11) {
+            if (sellIn < 10) {
                 if (quality < 50) {
                     quality = quality + 1
                 }
             }
 
-            if (sellIn < 6) {
+            if (sellIn < 5) {
                 if (quality < 50) {
                     quality = quality + 1
                 }
