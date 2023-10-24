@@ -38,9 +38,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
 
     open fun update1(name: String) {
         if (quality > 0) {
-            if (name != "Sulfuras, Hand of Ragnaros") {
-                quality = quality - 1
-            }
+            quality = quality - 1
         }
     }
 }
