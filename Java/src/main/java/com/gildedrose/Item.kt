@@ -27,8 +27,10 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
     }
 
     protected open fun saturate() {
-        if (quality < 0) quality = 0
-        if (quality > 50) quality = 50
+        when {
+            quality < 0 -> quality = 0
+            quality > 50 -> quality = 50
+        }
     }
 }
 
