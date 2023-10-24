@@ -11,7 +11,7 @@ open class Item(
 open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
     fun update() {
         val name = name
-        update1(name)
+        update1()
 
         if (name != "Sulfuras, Hand of Ragnaros") {
             sellIn = sellIn - 1
@@ -36,7 +36,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
         }
     }
 
-    protected open fun update1(name: String) {
+    protected open fun update1() {
         if (quality > 0) {
             quality = quality - 1
         }
@@ -44,7 +44,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
 }
 
 class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
-    override fun update1(name: String) {
+    override fun update1() {
         if (quality < 50) {
             quality = quality + 1
         }
@@ -52,7 +52,7 @@ class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, qua
 }
 
 class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
-    override fun update1(name: String) {
+    override fun update1() {
         if (quality < 50) {
             quality = quality + 1
 
@@ -72,5 +72,5 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
 }
 
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
-    override fun update1(name: String) {}
+    override fun update1() {}
 }
