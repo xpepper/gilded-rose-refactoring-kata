@@ -13,7 +13,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
         val name = name
         update1()
         update2()
-        update3(name)
+        update3()
     }
 
     protected open fun update1() {
@@ -26,7 +26,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
         sellIn = sellIn - 1
     }
 
-    protected open fun update3(name: String) {
+    protected open fun update3() {
         if (sellIn < 0) {
             if (quality > 0) {
                 quality = quality - 1
@@ -42,7 +42,7 @@ class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, qua
         }
     }
 
-    override fun update3(name: String) {
+    override fun update3() {
         if (sellIn < 0) {
             if (quality < 50) {
                 quality = quality + 1
@@ -70,7 +70,7 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
         }
     }
 
-    override fun update3(name: String) {
+    override fun update3() {
         if (sellIn < 0) {
             quality = 0
         }
@@ -80,5 +80,5 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun update1() {}
     override fun update2() {}
-    override fun update3(name: String) {}
+    override fun update3() {}
 }
