@@ -12,7 +12,6 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
     fun update() {
         val name = name
         update1()
-
         update2()
 
         if (sellIn < 0) {
