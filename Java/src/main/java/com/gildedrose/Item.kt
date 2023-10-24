@@ -10,7 +10,6 @@ open class Item(
 
 open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
     fun update() {
-        val name = name
         update1()
         update2()
         update3()
