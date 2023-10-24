@@ -45,16 +45,11 @@ class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, qua
 
 class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun degrade() {
-        quality = quality + 1
-
-        if (sellIn < 10) {
-            quality = quality + 1
-        }
-        if (sellIn < 5) {
-            quality = quality + 1
-        }
-        if (sellIn < 0) {
-            quality = 0
+        quality = when {
+            sellIn < 0 -> 0
+            sellIn < 5 -> quality + 3
+            sellIn < 10 -> quality + 2
+            else -> quality + 1
         }
     }
 }
