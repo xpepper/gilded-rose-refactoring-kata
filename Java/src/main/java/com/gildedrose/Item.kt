@@ -36,7 +36,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
         }
     }
 
-    open fun update1(name: String) {
+    protected open fun update1(name: String) {
         if (quality > 0) {
             quality = quality - 1
         }
