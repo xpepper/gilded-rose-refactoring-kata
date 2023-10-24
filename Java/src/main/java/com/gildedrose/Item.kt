@@ -11,7 +11,7 @@ open class Item(
 open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
     fun update() {
         update1()
-        update2()
+        age()
         update3()
     }
 
@@ -21,7 +21,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
         }
     }
 
-    protected open fun update2() {
+    protected open fun age() {
         sellIn = sellIn - 1
     }
 
@@ -78,6 +78,6 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
 
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun update1() {}
-    override fun update2() {}
+    override fun age() {}
     override fun update3() {}
 }
