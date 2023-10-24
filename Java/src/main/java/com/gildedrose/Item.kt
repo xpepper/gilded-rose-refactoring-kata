@@ -12,6 +12,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
     fun update() {
         age()
         degrade()
+        saturate()
     }
 
     protected open fun age() {
@@ -27,6 +28,11 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
                 quality = quality - 1
             }
         }
+    }
+
+    protected open fun saturate() {
+        if (quality < 0) quality = 0
+        if (quality > 50) quality = 50
     }
 }
 
@@ -70,4 +76,5 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun age() {}
     override fun degrade() {}
+    override fun saturate() {}
 }
