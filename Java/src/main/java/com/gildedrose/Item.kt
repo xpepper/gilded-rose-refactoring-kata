@@ -20,10 +20,10 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
     }
 
     protected open fun degrade() {
-        quality = quality - 1
-        if (sellIn < 0) {
+        if (sellIn < 0)
+            quality = quality - 2
+        else
             quality = quality - 1
-        }
     }
 
     protected open fun saturate() {
