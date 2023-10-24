@@ -28,20 +28,8 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
 
     protected open fun update3(name: String) {
         if (sellIn < 0) {
-            if (name != "Aged Brie") {
-                if (name != "Backstage passes to a TAFKAL80ETC concert") {
-                    if (quality > 0) {
-                        if (name != "Sulfuras, Hand of Ragnaros") {
-                            quality = quality - 1
-                        }
-                    }
-                } else {
-                    quality = quality - quality
-                }
-            } else {
-                if (quality < 50) {
-                    quality = quality + 1
-                }
+            if (quality > 0) {
+                quality = quality - 1
             }
         }
     }
