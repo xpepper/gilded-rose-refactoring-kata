@@ -36,10 +36,10 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
 
 class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun degrade() {
-        quality = quality + 1
-        if (sellIn < 0) {
+        if (sellIn < 0)
+            quality = quality + 2
+        else
             quality = quality + 1
-        }
     }
 }
 
