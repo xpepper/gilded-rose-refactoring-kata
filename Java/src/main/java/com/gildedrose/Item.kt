@@ -27,9 +27,7 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
                 quality = quality - 1
             }
         }
-
     }
-
 }
 
 class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
