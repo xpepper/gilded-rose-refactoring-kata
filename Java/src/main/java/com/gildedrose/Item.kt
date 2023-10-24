@@ -20,13 +20,9 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
     }
 
     protected open fun degrade() {
-        if (quality > 0) {
-            quality = quality - 1
-        }
+        quality = quality - 1
         if (sellIn < 0) {
-            if (quality > 0) {
-                quality = quality - 1
-            }
+            quality = quality - 1
         }
     }
 
@@ -38,39 +34,27 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
 
 class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun degrade() {
-        if (quality < 50) {
-            quality = quality + 1
-        }
+        quality = quality + 1
         if (sellIn < 0) {
-            if (quality < 50) {
-                quality = quality + 1
-            }
+            quality = quality + 1
         }
     }
 }
 
 class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun degrade() {
-        if (quality < 50) {
+        quality = quality + 1
+
+        if (sellIn < 10) {
             quality = quality + 1
-
-            if (sellIn < 10) {
-                if (quality < 50) {
-                    quality = quality + 1
-                }
-            }
-
-            if (sellIn < 5) {
-                if (quality < 50) {
-                    quality = quality + 1
-                }
-            }
+        }
+        if (sellIn < 5) {
+            quality = quality + 1
         }
         if (sellIn < 0) {
             quality = 0
         }
     }
-
 }
 
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
