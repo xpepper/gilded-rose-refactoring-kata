@@ -11,15 +11,14 @@ open class Item(
 open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
     fun update() {
         sellIn = sellIn - aging()
-        quality = degradation(sellIn, quality)
+        quality = quality - degradation(sellIn, quality)
         saturate()
     }
 
-    protected open fun degradation(sellIn: Int, quality: Int): Int =
-        when {
-            sellIn < 0 -> quality - 2
-            else -> quality - 1
-        }
+    protected open fun degradation(sellIn: Int, quality: Int): Int = when {
+        sellIn < 0 -> 2
+        else -> 1
+    }
 
     protected open fun aging() = 1
 
@@ -32,25 +31,23 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
 }
 
 class Brie(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
-    override fun degradation(sellIn: Int, quality: Int): Int =
-        if (sellIn < 0)
-            quality + 2
-        else
-            quality + 1
+    override fun degradation(sellIn: Int, quality: Int): Int = when {
+        sellIn < 0 -> -2
+        else -> -1
+    }
 }
 
 class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun degradation(sellIn: Int, quality: Int): Int = when {
-        sellIn < 0 -> 0
-        sellIn < 5 -> quality + 3
-        sellIn < 10 -> quality + 2
-        else -> quality + 1
+        sellIn < 0 -> quality
+        sellIn < 5 -> -3
+        sellIn < 10 -> -2
+        else -> -1
     }
 }
 
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun aging() = 0
-    override fun degradation(sellIn: Int, quality: Int) = quality
-    fun degrade() {}
+    override fun degradation(sellIn: Int, quality: Int) = 0
     override fun saturate() {}
 }
