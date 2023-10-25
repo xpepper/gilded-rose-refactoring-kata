@@ -11,22 +11,21 @@ open class Item(
 open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
     fun update() {
         sellIn = sellIn - aging()
-        quality = quality - degradation(sellIn, quality)
-        saturate()
+        quality = saturation(quality - degradation(sellIn, quality))
     }
+
+    protected open fun aging() = 1
 
     protected open fun degradation(sellIn: Int, quality: Int): Int = when {
         sellIn < 0 -> 2
         else -> 1
     }
 
-    protected open fun aging() = 1
 
-    protected open fun saturate() {
-        when {
-            quality < 0 -> quality = 0
-            quality > 50 -> quality = 50
-        }
+    protected open fun saturation(quality: Int): Int = when {
+        quality < 0 -> 0
+        quality > 50 -> 50
+        else -> quality
     }
 }
 
@@ -49,5 +48,5 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
     override fun aging() = 0
     override fun degradation(sellIn: Int, quality: Int) = 0
-    override fun saturate() {}
+    override fun saturation(quality: Int) = quality
 }
