@@ -20,11 +20,7 @@ class TexttestFixture {
             Sulfuras("Sulfuras, Hand of Ragnaros", -1, 80),
             BackstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20),
             BackstagePass("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-            BackstagePass(
-                "Backstage passes to a TAFKAL80ETC concert",
-                5,
-                49
-            ),  // this conjured item does not work properly yet
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 5, 49),  // this conjured item does not work properly yet
             BaseItem("Conjured Mana Cake", 3, 6)
         )
 
