@@ -8,13 +8,16 @@ open class Item(
     override fun toString() = "${this.name}, ${this.sellIn}, ${this.quality}"
 }
 
-open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn, quality) {
+open class BaseItem(
+    name: String,
+    sellIn: Int,
+    quality: Int,
+    private val aging: () -> Int = { 1 }
+) : Item(name, sellIn, quality) {
     fun update() {
         sellIn = sellIn - aging()
         quality = saturation(quality - degradation(sellIn, quality))
     }
-
-    protected open val aging: () -> Int = fun() = 1
 
     protected open fun degradation(sellIn: Int, quality: Int): Int = when {
         sellIn < 0 -> 2
@@ -44,8 +47,12 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
     }
 }
 
-class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
-    override val aging = fun() = 0
+class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(
+    name,
+    sellIn,
+    quality,
+    aging = { 0 }
+) {
     override fun degradation(sellIn: Int, quality: Int) = 0
     override fun saturation(quality: Int) = quality
 }
