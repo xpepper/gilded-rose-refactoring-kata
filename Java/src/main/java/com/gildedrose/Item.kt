@@ -14,13 +14,12 @@ open class BaseItem(name: String, sellIn: Int, quality: Int) : Item(name, sellIn
         quality = saturation(quality - degradation(sellIn, quality))
     }
 
-    protected open fun aging() = 1
+    protected open val aging: () -> Int = fun() = 1
 
     protected open fun degradation(sellIn: Int, quality: Int): Int = when {
         sellIn < 0 -> 2
         else -> 1
     }
-
 
     protected open fun saturation(quality: Int): Int = when {
         quality < 0 -> 0
@@ -46,7 +45,7 @@ class BackstagePass(name: String, sellIn: Int, quality: Int) : BaseItem(name, se
 }
 
 class Sulfuras(name: String, sellIn: Int, quality: Int) : BaseItem(name, sellIn, quality) {
-    override fun aging() = 0
+    override val aging = fun() = 0
     override fun degradation(sellIn: Int, quality: Int) = 0
     override fun saturation(quality: Int) = quality
 }
