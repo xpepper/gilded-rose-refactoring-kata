@@ -13,15 +13,15 @@ class TexttestFixture {
         out.println("OMGHAI!")
 
         val items = arrayOf<Item>(
-            BaseItem("+5 Dexterity Vest", 10, 20),
-            Brie("Aged Brie", 2, 0),
-            BaseItem("Elixir of the Mongoose", 5, 7),
-            Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80),
-            Sulfuras("Sulfuras, Hand of Ragnaros", -1, 80),
-            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-            BaseItem("Conjured Mana Cake", 3, 6)
+            BaseItem("+5 Dexterity Vest", sellIn = 10, quality = 20),
+            Brie("Aged Brie", sellIn = 2, quality = 0),
+            BaseItem("Elixir of the Mongoose", sellIn = 5, quality = 7),
+            Sulfuras("Sulfuras, Hand of Ragnaros", sellIn = 0, quality = 80),
+            Sulfuras("Sulfuras, Hand of Ragnaros", sellIn = -1, 80),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", sellIn = 15, quality = 20),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", sellIn = 10, quality = 49),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", sellIn = 5, quality = 49),
+            BaseItem("Conjured Mana Cake", sellIn = 3, quality = 6)
         )
 
         val app = GildedRose(items)
