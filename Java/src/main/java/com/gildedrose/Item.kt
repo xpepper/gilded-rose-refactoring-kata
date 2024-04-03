@@ -49,9 +49,9 @@ fun Brie(name: String, sellIn: Int, quality: Int) = BaseItem(
     name,
     sellIn,
     quality,
-    degradation = { sellIn, _ ->
+    degradation = { currentSellIn, _ ->
         when {
-            sellIn < 0 -> -2
+            currentSellIn < 0 -> -2
             else -> -1
         }
     }
@@ -61,11 +61,11 @@ fun BackstagePass(name: String, sellIn: Int, quality: Int) = BaseItem(
     name,
     sellIn,
     quality,
-    degradation = { sellIn, quality ->
+    degradation = { currentSellIn, currentQuality ->
         when {
-            sellIn < 0 -> quality
-            sellIn < 5 -> -3
-            sellIn < 10 -> -2
+            currentSellIn < 0 -> currentQuality
+            currentSellIn < 5 -> -3
+            currentSellIn < 10 -> -2
             else -> -1
         }
     }
