@@ -8,11 +8,16 @@ open class Item(
     override fun toString() = "${this.name}, ${this.sellIn}, ${this.quality}"
 }
 
+object Aging {
+    val standard: () -> Int = { 1 }
+    val none: () -> Int = { 0 }
+}
+
 class BaseItem(
     name: String,
     sellIn: Int,
     quality: Int,
-    private val aging: () -> Int = { 1 },
+    private val aging: () -> Int = Aging.standard,
     private val degradation: (Int, Int) -> Int = fun(sellIn: Int, quality: Int): Int = when {
         sellIn < 0 -> 2
         else -> 1
@@ -60,7 +65,7 @@ fun Sulfuras(name: String, sellIn: Int, quality: Int) = BaseItem(
     name,
     sellIn,
     quality,
-    aging = { 0 },
+    aging = Aging.none,
     degradation = { _, _ -> 0 },
     saturation = { it }
 )
