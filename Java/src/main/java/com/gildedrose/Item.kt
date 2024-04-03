@@ -84,5 +84,9 @@ fun Conjured(name: String, sellIn: Int, quality: Int) = BaseItem(
     name,
     sellIn,
     quality,
-    degradation = { sellIn, quality -> Degradation.standard(sellIn, quality) * 2 }
+    degradation = Degradation.standard * 2
 )
+
+operator fun ((Int, Int) -> Int).times(multiplier: Int) = { p1: Int, p2: Int ->
+    this(p1, p2) * multiplier
+}
