@@ -79,3 +79,15 @@ fun Sulfuras(name: String, sellIn: Int, quality: Int) = BaseItem(
     degradation = Degradation.none,
     saturation = Saturation.none
 )
+
+fun Conjured(name: String, sellIn: Int, quality: Int) = BaseItem(
+    name,
+    sellIn,
+    quality,
+    degradation = { currentSellIn, _ ->
+        when {
+            currentSellIn < 0 -> 4
+            else -> 2
+        }
+    }
+)

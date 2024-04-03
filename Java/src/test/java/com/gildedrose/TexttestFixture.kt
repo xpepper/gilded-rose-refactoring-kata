@@ -21,7 +21,7 @@ class TexttestFixture {
             BackstagePass("Backstage passes to a TAFKAL80ETC concert", sellIn = 15, quality = 20),
             BackstagePass("Backstage passes to a TAFKAL80ETC concert", sellIn = 10, quality = 49),
             BackstagePass("Backstage passes to a TAFKAL80ETC concert", sellIn = 5, quality = 49),
-            BaseItem("Conjured Mana Cake", sellIn = 3, quality = 6)
+            Conjured("Conjured Mana Cake", sellIn = 3, quality = 6)
         )
 
         val app = GildedRose(items)
@@ -64,7 +64,7 @@ class TexttestFixture {
         Backstage passes to a TAFKAL80ETC concert, 14, 21
         Backstage passes to a TAFKAL80ETC concert, 9, 50
         Backstage passes to a TAFKAL80ETC concert, 4, 50
-        Conjured Mana Cake, 2, 5
+        Conjured Mana Cake, 2, 4
 
         -------- day 2 --------
         name, sellIn, quality
@@ -76,7 +76,7 @@ class TexttestFixture {
         Backstage passes to a TAFKAL80ETC concert, 13, 22
         Backstage passes to a TAFKAL80ETC concert, 8, 50
         Backstage passes to a TAFKAL80ETC concert, 3, 50
-        Conjured Mana Cake, 1, 4
+        Conjured Mana Cake, 1, 2
 
         -------- day 3 --------
         name, sellIn, quality
@@ -88,7 +88,7 @@ class TexttestFixture {
         Backstage passes to a TAFKAL80ETC concert, 12, 23
         Backstage passes to a TAFKAL80ETC concert, 7, 50
         Backstage passes to a TAFKAL80ETC concert, 2, 50
-        Conjured Mana Cake, 0, 3
+        Conjured Mana Cake, 0, 0
 
         -------- day 4 --------
         name, sellIn, quality
@@ -100,7 +100,7 @@ class TexttestFixture {
         Backstage passes to a TAFKAL80ETC concert, 11, 24
         Backstage passes to a TAFKAL80ETC concert, 6, 50
         Backstage passes to a TAFKAL80ETC concert, 1, 50
-        Conjured Mana Cake, -1, 1
+        Conjured Mana Cake, -1, 0
 
         -------- day 5 --------
         name, sellIn, quality
@@ -163,5 +163,5 @@ class TexttestFixture {
         Conjured Mana Cake, -6, 0
 
 
-        """.trimIndent()
+""".trimIndent()
 }
