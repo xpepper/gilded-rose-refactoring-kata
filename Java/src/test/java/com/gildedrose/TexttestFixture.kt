@@ -1,17 +1,11 @@
 package com.gildedrose
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
 
 class TexttestFixture {
     @Test
     fun test() {
-        val outputStream = ByteArrayOutputStream()
-        val out = PrintStream(outputStream)
-        out.println("OMGHAI!")
-
         val items = listOf(
             Item("+5 Dexterity Vest", sellIn = 10, quality = 20),
             Brie("Aged Brie", sellIn = 2, quality = 0),
@@ -26,19 +20,15 @@ class TexttestFixture {
 
         val days = 10
         val apps = generateSequence(GildedRose(items)) { it.updated() }
-        apps.take(days).forEachIndexed { i, app ->
-            out.println("-------- day $i --------")
-            out.println("name, sellIn, quality")
-            for (item in app.items) {
-                out.println(item)
-            }
-            out.println()
+        val lines = apps.take(days).flatMapIndexed { i, app ->
+            listOf("-------- day $i --------") +
+                "name, sellIn, quality" +
+                app.items.map { it.toString() } + ""
         }
-        Assertions.assertEquals(expected, outputStream.toString())
+        assertEquals(expected, lines.joinToString("\n"))
     }
 
     private val expected = """
-        OMGHAI!
         -------- day 0 --------
         name, sellIn, quality
         +5 Dexterity Vest, 10, 20
@@ -158,7 +148,6 @@ class TexttestFixture {
         Backstage passes to a TAFKAL80ETC concert, 1, 50
         Backstage passes to a TAFKAL80ETC concert, -4, 0
         Conjured Mana Cake, -6, 0
-
 
 """.trimIndent()
 }
