@@ -64,19 +64,18 @@ private fun update(item: Item) {
                 }
             }
 
-            else -> {
-                when (itemType) {
-                    PASS -> {
-                        item.quality = item.quality - item.quality
-                    }
+            PASS -> {
+                item.quality = item.quality - item.quality
+            }
 
-                    else -> {
-                        if (item.quality > 0) {
-                            if (itemType == SULFURAS) return
-                            item.quality = item.quality - 1
-                        }
-                    }
+            SULFURAS -> {
+            }
+
+            OTHER -> {
+                if (item.quality > 0) {
+                    item.quality = item.quality - 1
                 }
+
             }
         }
     }
