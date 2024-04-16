@@ -9,8 +9,8 @@ class GildedRose(var items: Array<Item>) {
 }
 
 object SULFURAS : ItemType() {
-    override fun ItemType.age(item: Item) {
-    }
+    override fun ItemType.age(item: Item) {}
+    override fun ItemType.degrade(item: Item) {}
 }
 
 object PASS : ItemType() {
@@ -62,9 +62,6 @@ open class ItemType {
 
     protected open fun ItemType.degrade(item: Item) {
         when (this) {
-            SULFURAS -> {
-            }
-
             OTHER -> {
                 if (item.quality > 0) {
                     item.quality = item.quality - 1
