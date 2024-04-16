@@ -1,5 +1,7 @@
 package com.gildedrose
 
+import com.gildedrose.ItemType.*
+
 class GildedRose(var items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
@@ -9,11 +11,12 @@ class GildedRose(var items: Array<Item>) {
 }
 
 private fun update(item: Item) {
-    if (isBrie(item) || isPass(item)) {
+    val itemType = typeOf(item)
+    if (itemType == BRIE || itemType == PASS) {
         if (item.quality < 50) {
             item.quality = item.quality + 1
 
-            if (isPass(item)) {
+            if (itemType == PASS) {
                 if (item.sellIn < 11) {
                     if (item.quality < 50) {
                         item.quality = item.quality + 1
@@ -29,29 +32,29 @@ private fun update(item: Item) {
         }
     } else {
         if (item.quality > 0) {
-            if (isSulfuras(item)) {
+            if (itemType == SULFURAS) {
             } else {
                 item.quality = item.quality - 1
             }
         }
     }
 
-    if (isSulfuras(item)) {
+    if (itemType == SULFURAS) {
     } else {
         item.sellIn = item.sellIn - 1
     }
 
     if (item.sellIn < 0) {
-        if (isBrie(item)) {
+        if (itemType == BRIE) {
             if (item.quality < 50) {
                 item.quality = item.quality + 1
             }
         } else {
-            if (isPass(item)) {
+            if (itemType == PASS) {
                 item.quality = item.quality - item.quality
             } else {
                 if (item.quality > 0) {
-                    if (isSulfuras(item)) return
+                    if (itemType == SULFURAS) return
                     item.quality = item.quality - 1
                 }
             }
@@ -59,8 +62,13 @@ private fun update(item: Item) {
     }
 }
 
-private fun isSulfuras(item: Item) = item.name == "Sulfuras, Hand of Ragnaros"
+enum class ItemType {
+    SULFURAS, PASS, BRIE, OTHER
+}
 
-private fun isPass(item: Item) = item.name == "Backstage passes to a TAFKAL80ETC concert"
-
-private fun isBrie(item: Item) = item.name == "Aged Brie"
+fun typeOf(item: Item): ItemType = when (item.name) {
+    "Sulfuras, Hand of Ragnaros" -> SULFURAS
+    "Backstage passes to a TAFKAL80ETC concert" -> PASS
+    "Aged Brie" -> BRIE
+    else -> OTHER
+}
