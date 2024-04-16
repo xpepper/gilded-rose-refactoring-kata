@@ -24,18 +24,15 @@ class TexttestFixture {
             Conjured("Conjured Mana Cake", sellIn = 3, quality = 6)
         )
 
-        var app = GildedRose(items)
-
         val days = 10
-
-        for (i in 0 until days) {
+        val apps = generateSequence(GildedRose(items)) { it.updated() }
+        apps.take(days).forEachIndexed { i, app ->
             out.println("-------- day $i --------")
             out.println("name, sellIn, quality")
             for (item in app.items) {
                 out.println(item)
             }
             out.println()
-            app = app.updated()
         }
         Assertions.assertEquals(expected, outputStream.toString())
     }
