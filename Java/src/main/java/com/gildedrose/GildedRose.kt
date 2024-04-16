@@ -37,11 +37,12 @@ private fun update(item: Item) {
             }
         }
 
-        else -> {
+        SULFURAS -> {
+        }
+
+        OTHER -> {
             if (item.quality > 0) {
                 when (itemType) {
-                    SULFURAS -> {
-                    }
 
                     else -> {
                         item.quality = item.quality - 1
