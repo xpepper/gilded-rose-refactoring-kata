@@ -12,12 +12,11 @@ class GildedRose(var items: Array<Item>) {
 
 private fun update(item: Item) {
     val itemType = typeOf(item)
-    when (itemType) {
-        SULFURAS -> {
-        }
-        else -> item.sellIn = item.sellIn - 1
-    }
+    age(itemType, item)
+    degrade(itemType, item)
+}
 
+private fun degrade(itemType: ItemType, item: Item) {
     when (itemType) {
         BRIE -> {
             if (item.quality < 50) {
@@ -64,6 +63,15 @@ private fun update(item: Item) {
                 }
             }
         }
+    }
+}
+
+private fun age(itemType: ItemType, item: Item) {
+    when (itemType) {
+        SULFURAS -> {
+        }
+
+        else -> item.sellIn = item.sellIn - 1
     }
 }
 
