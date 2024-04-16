@@ -14,7 +14,19 @@ object SULFURAS : ItemType() {
 }
 
 object PASS : ItemType()
-object BRIE : ItemType()
+object BRIE : ItemType() {
+    override fun ItemType.degrade(item: Item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1
+        }
+        if (item.sellIn < 0) {
+            if (item.quality < 50) {
+                item.quality = item.quality + 1
+            }
+        }
+    }
+}
+
 object OTHER : ItemType()
 
 open class ItemType {
@@ -27,39 +39,11 @@ open class ItemType {
         item.sellIn = item.sellIn - 1
     }
 
-    private fun ItemType.degrade(item: Item) {
+    protected open fun ItemType.degrade(item: Item) {
         when (this) {
-            BRIE -> {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
-                }
-                if (item.sellIn < 0) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1
-                    }
-                }
-            }
-
             PASS -> {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
-
-                    if (item.sellIn < 10) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1
-                        }
-                    }
-                    if (item.sellIn < 5) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1
-                        }
-                    }
-                }
-                if (item.sellIn < 0) {
-                    item.quality = item.quality - item.quality
-                }
+                degradePass(item)
             }
-
 
             SULFURAS -> {
             }
@@ -76,6 +60,27 @@ open class ItemType {
             }
         }
     }
+
+    private fun degradePass(item: Item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1
+
+            if (item.sellIn < 10) {
+                if (item.quality < 50) {
+                    item.quality = item.quality + 1
+                }
+            }
+            if (item.sellIn < 5) {
+                if (item.quality < 50) {
+                    item.quality = item.quality + 1
+                }
+            }
+        }
+        if (item.sellIn < 0) {
+            item.quality = item.quality - item.quality
+        }
+    }
+
 }
 
 fun typeOf(item: Item): ItemType = when (item.name) {
