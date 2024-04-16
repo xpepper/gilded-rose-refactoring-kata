@@ -1,7 +1,5 @@
 package com.gildedrose
 
-import com.gildedrose.ItemType.*
-
 class GildedRose(var items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
@@ -10,9 +8,12 @@ class GildedRose(var items: Array<Item>) {
     }
 }
 
-enum class ItemType {
-    SULFURAS, PASS, BRIE, OTHER;
+object SULFURAS : ItemType()
+object PASS : ItemType()
+object BRIE : ItemType()
+object OTHER : ItemType()
 
+open class ItemType {
     fun update(item: Item) {
         this.age(item)
         this.degrade(item)
