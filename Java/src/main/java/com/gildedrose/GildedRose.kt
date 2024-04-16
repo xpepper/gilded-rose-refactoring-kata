@@ -42,12 +42,7 @@ private fun update(item: Item) {
 
         OTHER -> {
             if (item.quality > 0) {
-                when (itemType) {
-
-                    else -> {
-                        item.quality = item.quality - 1
-                    }
-                }
+                item.quality = item.quality - 1
             }
         }
     }
