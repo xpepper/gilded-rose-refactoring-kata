@@ -12,50 +12,72 @@ class GildedRose(var items: Array<Item>) {
 
 private fun update(item: Item) {
     val itemType = typeOf(item)
-    if (itemType == BRIE || itemType == PASS) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1
+    when (itemType) {
+        BRIE, PASS -> {
+            if (item.quality < 50) {
+                item.quality = item.quality + 1
 
-            if (itemType == PASS) {
-                if (item.sellIn < 11) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1
-                    }
-                }
+                when (itemType) {
+                    PASS -> {
+                        if (item.sellIn < 11) {
+                            if (item.quality < 50) {
+                                item.quality = item.quality + 1
+                            }
+                        }
 
-                if (item.sellIn < 6) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1
+                        if (item.sellIn < 6) {
+                            if (item.quality < 50) {
+                                item.quality = item.quality + 1
+                            }
+                        }
                     }
                 }
             }
         }
-    } else {
-        if (item.quality > 0) {
-            if (itemType == SULFURAS) {
-            } else {
-                item.quality = item.quality - 1
+
+        else -> {
+            if (item.quality > 0) {
+                when (itemType) {
+                    SULFURAS -> {
+                    }
+
+                    else -> {
+                        item.quality = item.quality - 1
+                    }
+                }
             }
         }
     }
 
-    if (itemType == SULFURAS) {
-    } else {
-        item.sellIn = item.sellIn - 1
+    when (itemType) {
+        SULFURAS -> {
+        }
+
+        else -> {
+            item.sellIn = item.sellIn - 1
+        }
     }
 
     if (item.sellIn < 0) {
-        if (itemType == BRIE) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1
+        when (itemType) {
+            BRIE -> {
+                if (item.quality < 50) {
+                    item.quality = item.quality + 1
+                }
             }
-        } else {
-            if (itemType == PASS) {
-                item.quality = item.quality - item.quality
-            } else {
-                if (item.quality > 0) {
-                    if (itemType == SULFURAS) return
-                    item.quality = item.quality - 1
+
+            else -> {
+                when (itemType) {
+                    PASS -> {
+                        item.quality = item.quality - item.quality
+                    }
+
+                    else -> {
+                        if (item.quality > 0) {
+                            if (itemType == SULFURAS) return
+                            item.quality = item.quality - 1
+                        }
+                    }
                 }
             }
         }
