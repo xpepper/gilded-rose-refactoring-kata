@@ -6,7 +6,7 @@ object Aging {
 }
 
 object Degradation {
-    val standard: (Int, Int) -> Int = fun(sellIn: Int, quality: Int): Int = when {
+    val standard: (Int, Int) -> Int = fun(sellIn: Int, _: Int): Int = when {
         sellIn < 0 -> 2
         else -> 1
     }
