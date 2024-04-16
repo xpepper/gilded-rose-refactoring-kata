@@ -18,6 +18,11 @@ private fun update(item: Item) {
                 item.quality = item.quality + 1
             }
             item.sellIn = item.sellIn - 1
+            if (item.sellIn < 0) {
+                if (item.quality < 50) {
+                    item.quality = item.quality + 1
+                }
+            }
         }
 
         PASS -> {
@@ -37,6 +42,9 @@ private fun update(item: Item) {
                 }
             }
             item.sellIn = item.sellIn - 1
+            if (item.sellIn < 0) {
+                item.quality = item.quality - item.quality
+            }
         }
 
 
@@ -48,33 +56,11 @@ private fun update(item: Item) {
                 item.quality = item.quality - 1
             }
             item.sellIn = item.sellIn - 1
-        }
-    }
-    when (itemType) {
-        BRIE -> {
-            if (item.sellIn < 0) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
-                }
-            }
-        }
-
-        PASS -> {
-            if (item.sellIn < 0) {
-                item.quality = item.quality - item.quality
-            }
-        }
-
-        SULFURAS -> {
-        }
-
-        OTHER -> {
             if (item.sellIn < 0) {
                 if (item.quality > 0) {
                     item.quality = item.quality - 1
                 }
             }
-
         }
     }
 }
