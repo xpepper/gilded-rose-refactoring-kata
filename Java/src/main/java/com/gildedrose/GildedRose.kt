@@ -5,15 +5,9 @@ import com.gildedrose.ItemType.*
 class GildedRose(var items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
-            update(item)
+            typeOf(item).update(item)
         }
     }
-}
-
-private fun update(item: Item) {
-    val itemType = typeOf(item)
-    age(itemType, item)
-    degrade(itemType, item)
 }
 
 private fun degrade(itemType: ItemType, item: Item) {
@@ -76,7 +70,12 @@ private fun age(itemType: ItemType, item: Item) {
 }
 
 enum class ItemType {
-    SULFURAS, PASS, BRIE, OTHER
+    SULFURAS, PASS, BRIE, OTHER;
+
+    fun update(item: Item) {
+        age(this, item)
+        degrade(this, item)
+    }
 }
 
 fun typeOf(item: Item): ItemType = when (item.name) {
