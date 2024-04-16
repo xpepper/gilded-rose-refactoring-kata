@@ -24,7 +24,7 @@ class TexttestFixture {
             Conjured("Conjured Mana Cake", sellIn = 3, quality = 6)
         )
 
-        val app = GildedRose(items)
+        var app = GildedRose(items)
 
         val days = 10
 
@@ -35,7 +35,7 @@ class TexttestFixture {
                 out.println(item)
             }
             out.println()
-            app.updateQuality()
+            app = app.updated()
         }
         Assertions.assertEquals(expected, outputStream.toString())
     }
