@@ -8,7 +8,11 @@ class GildedRose(var items: Array<Item>) {
     }
 }
 
-object SULFURAS : ItemType()
+object SULFURAS : ItemType() {
+    override fun ItemType.age(item: Item) {
+    }
+}
+
 object PASS : ItemType()
 object BRIE : ItemType()
 object OTHER : ItemType()
@@ -19,13 +23,8 @@ open class ItemType {
         this.degrade(item)
     }
 
-    private fun ItemType.age(item: Item) {
-        when (this) {
-            SULFURAS -> {
-            }
-
-            else -> item.sellIn = item.sellIn - 1
-        }
+    protected open fun ItemType.age(item: Item) {
+        item.sellIn = item.sellIn - 1
     }
 
     private fun ItemType.degrade(item: Item) {
